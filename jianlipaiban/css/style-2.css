@@ -1,0 +1,9 @@
+.h1{
+    float: left;
+    width:30%;
+    background: blue;
+}
+.left{
+    float: right;
+    width:70%
+}

@@ -1,0 +1,32 @@
+.total{
+    width: 80%;
+    max-width: 700px;
+    min-width: 300px;
+    margin: auto;
+    padding:20px;
+}
+.h1{
+    font:bold 30px  "Trebuchet MS", Verdana, sans-serif;
+    margin-bottom:20px; 
+}
+.h2{
+    font: bold 20px  "Trebuchet MS", Verdana, sans-serif;
+    margin-bottom:20px; 
+}
+.h3{
+    font: bold 15px  "Trebuchet MS", Verdana, sans-serif;
+    
+}
+.fenlei{
+    margin-bottom:20px;
+}
+.xinxi{
+    font: bold 15px  "Trebuchet MS", Verdana, sans-serif;
+    
+}
+.content{
+    margin-right: 30px;
+}
+.kuai{
+    margin-bottom:15px; 
+}

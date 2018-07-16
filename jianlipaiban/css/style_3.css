@@ -1,0 +1,49 @@
+/*文字与文字的间距最好用padding，margin会造成在设置不同样式时不同块之间有空白*/
+.h1{
+    background: #858585;
+    color:white;
+    font-size: 15px;
+    padding-left:20px;
+    height: 60px; 
+    line-height: 60px;
+    margin-bottom: 2px;
+}
+.h2{
+    float: left;
+    background: #d6d6d6;
+    height:80px;
+    font: bold 12px  "Trebuchet MS", Verdana, sans-serif;
+    line-height: 80px;
+    width:10%;
+    text-align: center;
+    margin-bottom: 2px;
+    
+}
+.jibenxinxi{
+    float: left;
+    padding:10px;
+}
+.fenlei{
+    
+    border-bottom:1px solid #d6d6d6;
+    margin-bottom:0px; 
+}
+.content{
+    margin-bottom: 2px;
+}
+.h3{
+    font-size:12px;
+}
+.kuai{
+    padding-left: 100px;
+    font-size:12px;
+    margin-bottom: 0px;
+    
+}
+.nei{
+    border-bottom:1px solid #d6d6d6;
+    height: 80px; 
+}
+.left{
+    border:1px solid #d6d6d6;
+}
