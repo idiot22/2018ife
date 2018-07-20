@@ -1,0 +1,121 @@
+/*
+垂直居中
+选择器
+margin也能用百分号表示
+*/
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.head{
+    height:60px;
+    background: #333333; 
+}
+.head-content{
+    vertical-align: center;
+    max-width: 970px;
+    min-width: 300px;
+    margin: auto;
+    position: relative;
+}
+.head-ul{
+    list-style:none;
+    margin-left:100px;
+    position: absolute;
+    right: 0px;
+}
+.head-ul>li{
+    float: left;
+    margin-right: 10px;
+    color: white;
+    text-decoration: underline;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+    background: #666666;
+    position: absolute;
+    top:5px;
+    text-align:center;
+    line-height: 50px;
+}
+.banner{
+    background: #66bb33;
+    height: 300px;
+    position: relative;
+}
+.banner-numz{
+    position: absolute;
+    bottom: 20px;
+    right: 160px;
+}
+.banner-num{
+    float:left;
+    width:20px;
+    height:25px;
+    background: #b2dd99;
+    margin-left: 10px; 
+    border: 1px solid ;
+    text-align:  center;
+    line-height: 25px;
+}
+.nav{
+    height:60px;
+    border-bottom: 1px solid #cccccc; 
+    position: relative;
+}
+.nav-z{
+    width: 960px;
+    margin: auto;
+    position: relative;
+    top:22px;
+}
+.nav1,.nav11{
+    padding: 8px 15px;
+    border: 1px solid #cccccc; 
+    float: left;
+    border-radius: 15px 15px 0px 0px;  
+    background: #eeeeee;
+}
+.nav11{
+    background: white;
+    border-bottom:2px solid white; 
+}
+.content{
+  
+    height:500px;
+}
+.content-z{
+    max-width: 960px;
+    min-width:300px;
+    overflow: hidden;
+    margin: auto;
+}
+.content-row1,.content-row1-last,.content-row2,.content-row2-last,.content-row3,.content-row3-last{
+    box-sizing: border-box;
+    width: 32.3%;
+    height: 150px;
+    margin-right: 1.55%;
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+    float: left;  
+    text-align: center;
+    line-height: 150px;
+}
+
+.content-row2,.content-row2-last{
+    width: 23.8375%;
+    margin-right: 1.55%;
+}
+.content-row1-last,.content-row2-last,.content-row3-last{
+    margin-right: 0px; 
+}
+.foot{
+    background: #666666;
+    height:120px;
+    text-align: center;
+    padding-top:10px;
+    color: white;
+}
+
