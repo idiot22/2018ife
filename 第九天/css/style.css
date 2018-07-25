@@ -1,0 +1,371 @@
+/*max-height没反应
+img铺满整个div？
+div怎样等比例缩放
+part1-kuang margin-top不管用？
+选择器
+font样式选择器一好了，二修改不了
+不定高元素垂直居中
+ipad布局有问题
+img标签怎么加hover，就是在原来的图片上叠加另一张图片？
+选择器不熟练，导致滥用class
+*/
+body{
+    margin: 0px;
+}
+
+.zong{
+    max-width: 1600px;
+    min-width: 400px;
+    margin: auto;
+}
+.part1{
+    width:100%;
+    height:998px;
+    position: relative;
+   }
+.bgimg{
+    width:100%;
+    height: 998px;
+}
+.huibg{
+    width:100%;
+    height: 998px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+.hello{
+    text-align: center;
+    font-family: Myriad Pro;
+    font-size: 80px;
+    color: white; 
+    padding-top: 200px; 
+}
+.part1-jieshao{
+    width:60%;
+    margin:auto;
+    text-align: center;
+    color: white;
+    font-size: 20px ;
+    font-family: " Verdana";
+    font-weight: lighter; 
+    padding-bottom: 80px;
+}
+.part1-kuang{
+    width: 70%;
+    border: 1px solid white;
+    margin: auto;
+    text-align: center;
+    padding:50px;
+}
+.part1-kuang>span{
+    color: white;
+    font-size: 18px;
+}
+.span2{
+    font-family: " Verdana";
+    font-weight: lighter; 
+    font-size: 8px;
+    color: #464646;
+}
+.part1-btn{
+    width: 90%;
+    margin: auto; 
+    overflow: hidden;
+}
+.btn,.btn2{
+    box-sizing: border-box; 
+    width: 30%;
+    height: 50px;
+    padding: 10px; 
+    border: 0.2px solid #a4a4a4;
+    float: left;
+    margin-right:10%;
+    line-height: 30px;
+    color: white;
+    font-size: 13px;
+   
+}
+.btn2{
+    background: white;
+    width:20%;
+    margin-right:0;
+    color: black;
+}
+.part2{
+    width:100%;
+    padding: 80px 0px;
+}
+.part2-wenzi{
+    width: 100%;
+    text-align: center;
+    margin:auto;
+}
+.part2-b{
+    color: black;
+    font-size: 13px;
+}
+#part2-ready{
+    color: black;
+    font-size: 30px;
+}
+.part2-kuai{
+    width:40%;
+    float: left;
+    margin-right: 10%; 
+}
+.part2-kuai>img{
+    float: left;
+    width:7%;
+}
+.part2-kuai>div{
+    text-align: left;
+    padding-left: 10%; 
+    margin-right:0px; 
+}
+.tou{
+    color: #464646;
+    font-size:13px;
+    
+}
+.part2-4kuai{
+    width:68%;
+    margin: auto;
+    overflow: hidden;
+    padding-left: 100px;
+    padding-top: 50px 
+}
+.part2{
+    width:100%;
+}
+.part3{
+    position: relative;
+    display:inline-block;
+    vertical-align: middle;
+}
+.part3-huibg:before{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  
+}
+.part3-huibg{
+    position: relative;
+    display:inline-block;
+    vertical-align: middle;
+    width:100%;
+    height: 998px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top:0px;
+    overflow: hidden;
+    
+}
+.part3-kuai{
+    display:inline-block;
+    vertical-align: middle;
+    width:80%;
+    position: relative;
+    margin-right: 0px; 
+}
+
+.part3-left{
+    box-sizing: border-box;
+    width:60%;
+    padding: 0px 14%;
+    text-align: center;
+   overflow: hidden;
+}
+.title{
+    font-size: 20px; 
+}
+.part3-left>h2{
+    color: white;
+    font-size: 25px;
+    text-align: left
+}
+.part3-left>p{
+    width:100%;
+    font-size: 15px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+.part3-btn1,.part3-btn2{
+    box-sizing: border-box;
+    width:46%;
+    border: 0.3px solid white; 
+    float: left;
+    padding: 10px;  
+    font-size: 13px;
+    background:white;
+    padding-top: 10px; 
+}
+.part3-btn2{
+    margin-left: 8%;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+}
+.part3-huibg >img{
+       position: absolute;
+       top:200px;
+       right: -200px;
+       width:65%
+}
+.part4{
+    text-align: center;
+    padding: 70px 0px;
+    overflow: hidden;
+    border-bottom: 1px solid #c1c1c1 
+}
+
+.part4-3kuai{
+    width:80%;
+    margin:auto;
+}
+
+.kuai1{
+    text-align: center;
+    box-sizing: border-box;
+    width: 29%;
+    margin-top: 80px ;
+    margin-right: 5% ;
+    float: left;
+}
+.kuai1>div{
+    margin-top: 30px 
+}
+.part5{
+    padding: 70px 0px;
+    border-bottom: 1px solid #c1c1c1; 
+}
+.part5-div,.part5-div2{
+    width:80%;
+    margin: auto;
+    overflow: hidden;
+    padding-bottom: 100px;
+  
+}
+.part5-div>img{
+    width: 70%;
+    float: left;
+}
+.part5-div>div{
+    
+    width:25%;
+    float: left;
+    margin-left: 5% ;
+    margin-top: 6%
+}
+.part5-div2>img{
+    width: 70%;
+    float: right;
+}
+.part5-div2>div{
+    width:25%;
+    float: left;
+    margin-right: 5% ;
+    margin-top: 6%;
+  
+}
+.part6{
+    text-align: center;
+    padding: 50px 0px;
+    border-bottom: 1px solid #c1c1c1; 
+}
+.part6>p{
+    width: 50%;
+    margin: auto;
+}
+.part6-img{
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+    
+    overflow: hidden;
+}
+.img1,.img2,.img3,.img4{
+    width: 45%;
+    float: left;
+}
+.img1,.img3{
+    margin-right: 10%
+}
+.img1,img2{
+    margin-bottom: 40px 
+}
+.part7-kuai{
+    overflow: hidden;
+    width: 80%;
+    margin: auto;
+    padding: 60px 0px;
+}
+.left{
+    box-sizing: border-box;
+    width: 42%;
+    height: 450px;
+    border: 1px solid #c1c1c1; 
+    border-radius: 10px;
+    margin-right: 16%  ;
+    float: left;
+    padding: 30px 50px;
+    text-align: center;
+}
+.left>span{
+    font-size: 20px
+}
+.right{
+    box-sizing: border-box;
+   width:42%;
+   height: 450px;
+   
+   float: left;
+}
+input{
+    width: 93%;
+    height: 40px;
+    margin-top: 30px; 
+    padding-left: 7% 
+}
+button{
+    width: 100%;
+    color: white;
+    background: black;
+    padding: 10px;
+    border: none;
+    margin-top: 30px
+}
+.part8{
+    background: black;
+    padding: 40px 0px;
+}
+.part8-kuai{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.part8-kuai1,.part8-kuai4{
+    color: white;
+    width:13%;
+    margin-right: 15%;
+    float: left;
+}
+.part8-kuai1,.part8-kuai4>p{
+    color: #c1c1c1;
+    line-height: 30px;
+    font-size: 13px;
+    font-weight: lighter;
+}
+.part8-kuai4{
+    margin: 0px;
+}
+.xinxi>img{
+    float: left;
+    margin-right: 20px
+}
+.xinxi{
+    margin-bottom: 20px 
+}
