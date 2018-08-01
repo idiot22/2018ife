@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>     
+    <!--
+        加减乘除
+    -->   
+    <input id="first-number"  value="0" placeholder="第一个数字">
+    <input id="second-number"  value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        function panduan(x){
+            var chang = x.length;
+            for(var i = 0;i<chang;i++){
+                if(x.charAt(i)<'0'||x.charAt(i)>'9')
+                {
+                    console.log("请输入数字");
+                    return 0;
+                }
+            }
+            return 1;
+
+        }
+        document.getElementById("add-btn").onclick = function() {
+            var a = document.getElementById("first-number").value;
+            var b = document.getElementById("second-number").value;
+            var c = panduan(a);
+            var d = panduan(b);
+            if(c==1&&d==1){
+            document.getElementById("result").innerHTML = parseInt(a) + parseInt(b);}
+        }
+        document.getElementById("minus-btn").onclick = function() {
+            var a = document.getElementById("first-number").value;
+            var b = document.getElementById("second-number").value;
+            var c = panduan(a);
+            var d = panduan(b);
+            if(c==1&&d==1){
+            document.getElementById("result").innerHTML = parseInt(a) - parseInt(b);}
+        }
+        document.getElementById("times-btn").onclick = function() {
+            var a = document.getElementById("first-number").value;
+            var b = document.getElementById("second-number").value;
+            var c = panduan(a);
+            var d = panduan(b);
+            if(c==1&&d==1){
+            document.getElementById("result").innerHTML = parseInt(a) * parseInt(b);}
+        }
+        document.getElementById("divide-btn").onclick = function() {
+            var a = document.getElementById("first-number").value;
+            var b = document.getElementById("second-number").value;
+            var c = panduan(a);
+            var d = panduan(b);
+            if(b=="0"){
+                console.log("分母不能为零")
+            }
+            if(c==1&&d==1&&b!="0"){
+            document.getElementById("result").innerHTML = parseInt(a) / parseInt(b);}
+        }
+    </script>
+    <!--
+        十进制数字转化为二进制
+    -->   
+
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result2">运算结果</p>
+
+    <h1 id="wenhou"></h1>
+
+    <script>
+
+       document.getElementById("trans-btn").onclick = function dec2bin(decNumber) {
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+    // 新的需求是，转化显示后的二进制数为bin-bit中输入的数字宽度，例如
+    // dec-number为5，bin-bit为5，则转化后数字为00101
+    // 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
+
+            var id1=document.getElementById("dec-number");
+            var content = id1.value;
+            console.log(content);
+            var shuzu = new Array(),i=0;
+            var a="",i=0;
+            var num=parseInt(content);
+            if(parseFloat(content)==parseInt(content)&&parseInt(content)>=0){
+                while(num!=0){
+                    shuzu[i] = num%2;
+                    console.log(shuzu[i]);
+                    num=parseInt(num/2);
+                    i++;
+                    
+                }
+            }
+            for(var j=shuzu.length-1;j>=0;j--){
+               a+=shuzu[j]+"";
+            }
+            
+            var b="";
+            var binBit=document.getElementById("bin-bit").value;
+            if(shuzu.length>=parseInt(binBit)){
+                document.getElementById("result2").innerHTML =a;
+            }
+                else{
+                    for(var k=parseInt(binBit)-shuzu.length;k>0;k--){
+                        b+="0";
+                    }
+                    a=b+a;
+                    document.getElementById("result2").innerHTML =a;
+                }
+            
+        }
+
+
+        /*
+        3的小游戏，练习使用循环和条件语句，实现如下需求：
+        从1到100，以此在console输出各数字，但是，当数字为3的倍数或者含有3的时候，输出“PA”
+        比如：1,2,PA,4,5,PA,……,11,PA,PA,14,PA……
+        */
+        for(var i=1;i<=100;i++){
+            if(i%3!=0){
+                console.log(i);
+            }else{
+                console.log("PA");
+            }
+        }
+        /*
+        练习使用循环实现一个九九乘法表
+        第一步，最低要求：在Console中按行输出 n * m = t
+        然后，尝试在网页中，使用table来实现一个九九乘法表
+        */
+        for(var i=1;i<=9;i++){
+            for(var j=1;j<=i;j++){
+                console.log(i.toString()+'*'+j.toString()+'='+i*j);
+            }
+        }
+
+        var date = new Date();
+        var time=date.getHours();
+        if(time>=4&&time<10)
+        {
+            document.getElementById("wenhou").innerHTML="早上好";
+        }
+        if(time>=20&&time<=23)
+        {
+            document.getElementById("wenhou").innerHTML="晚上好";
+        }
+    </script>
+
+</body>
+</html>
