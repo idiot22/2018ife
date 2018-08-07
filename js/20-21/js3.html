@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        #tu{
+            background:url(http://ife.baidu.com/2016/static/img/erik_ce204002.jpg) no-repeat center 0px;
+            height:480px;
+            width:480px;
+            
+        }
+    </style>
+</head>
+<body>            
+    <ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>        
+    </ul>
+
+    <p class="color-picker"></p>
+
+    <script>
+        /*var list = document.querySelectorAll("li");
+        for(var i=0;i<list.length;i++){
+            list[i].onclick = function(e){
+                var licontent = e.target;
+                var listyle = licontent.style.backgroundColor;
+                var p = document.querySelector(".color-picker");
+                p.innerHTML=listyle;
+                p.style.color=listyle;
+            }
+        }*/
+        var list = document.querySelectorAll("li");
+
+        var ul = document.querySelector(".palette");
+
+        var p = document.querySelector(".color-picker");
+
+        ul.onclick = function(ev) {
+
+         var ev = ev || window.event;
+
+　　    　var target = ev.target || ev.srcElement;
+
+　　    　if(target.nodeName.toLowerCase() == 'li'){
+
+            var c = target.style.backgroundColor;	                
+
+            p.innerHTML = c;
+
+            p.style.color = c;	
+
+    }
+
+}
+
+        
+    </script>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <script>
+        var flag = true;
+        var fadeobj = document.querySelector("#fade-obj");
+        var btn =document.querySelector("#fade-btn");
+        btn.onclick = function(e){
+            var num = flag ? 10 : 0;
+            var step = flag ? -1 : 1;
+            btn.disabled=true;
+            var interval = setInterval(function(){
+                num = num + step;
+                fadeobj.style.opacity = num/10;
+                if(num === 10 ||num === 0){
+                    clearInterval(interval);
+                    btn.disabled=false;
+                    btn.textContent =flag ? "淡入":"淡出";
+                    flag = !flag;
+                } 
+            },200);
+        }
+        
+    </script>
+
+    <div id="tu"></div>
+    <script>
+        window.onload = function(){
+            var img =document.getElementById("tu");
+            var y=0,step=480;
+            console.log("344");
+            setInterval(function(){
+                console.log("344");
+                y= y-step;
+                img.style.backgroundPositionY = y+"px";
+                if(y<=-480*16){
+                    y=0;
+                    console.log("344");
+                }  
+            },200);
+        }
+    </script>
+
+</body>
+</html>
