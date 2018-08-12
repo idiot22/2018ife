@@ -51,7 +51,7 @@
     <script>
         function getWeek(){
             var date = new Date();
-            var arr =["天","一","二","三","四","五","六"]
+            var arr =["天","一","二","三","四","五","六"];
             return arr[date.getDay()];
         }
         function getWeek2(){
@@ -106,48 +106,112 @@
     </Script>
     <h2>练习三</h2>
     <select id="year-select">
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            ……
-            <option value="2032">2002</option>
         </select>
         
         <select id="month-select">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            ……
-            <option value="12">12</option>
         </select>
         
         <select id="day-select">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            ……
-            <option value="31">31</option>
         </select>
         
         <select id="hour-select">
-            <option value="0">00</option>
-            <option value="1">01</option>        
-            ……
-            <option value="23">23</option>
         </select>
         
         <select id="minite-select">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            ……
-            <option>59</option>
         </select>
         
         <select id="second-select">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            ……
-            <option>59</option>
         </select>
         
         <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+        <script>
+            //封装document.getElementById
+            function byId(id){
+	            return typeof(id) === "string"?document.getElementById(id):id;	
+            }
+            var years = byId("year-select");
+            var mons = byId("month-select");
+            var days = byId("day-select");
+            var hours = byId("hour-select");
+            var minis = byId("minite-select");
+            var seconds = byId("second-select");
+            //初始化多选框函数
+            function initialSelect(min,max,ele){
+                for(var i=min;i<=max;i++){
+                    var option = document.createElement("option");
+                    option.value = i;      // 设置option对象的值
+					option.innerHTML = i;  // 设置option对象的内容
+                    ele.appendChild(option);
+                }
+            }
+            //清空option
+            function clearOption(){
+                var length = days.childNodes.length;
+                for(var i=0;i<length;i++){
+                   days.removeChild(days.childNodes[0]);
+                }
+            }
+            //初始化年
+            initialSelect(2000,2022,years);
+            //初始化月
+            initialSelect(1,12,mons);
+            //初始化日
+            initialSelect(1,31,days);
+             //初始化小时
+             initialSelect(0,23,hours);
+             //初始化分钟
+            initialSelect(0,59,minis);
+             //初始化秒
+             initialSelect(0,59,seconds);
+             //当月变换时日相应变换
+             mons.onclick = function(e){//在mons上设事件响应
+                 if(parseInt(e.target.value)%2==0&&e.target.value!=8){
+                    if(e.target.value==2)
+                    {
+                        clearOption();
+                        initialSelect(1,28,days);
+                    }
+                    else{
+                        clearOption();
+                        initialSelect(1,30,days);
+                    }
+                 }
+                 if(parseInt(e.target.value)%2==1||e.target.value==8){
+                    clearOption();
+                    initialSelect(1,31,days);
+                 }
+             }
+             var brr =[];
+             function jisuan(){
+                var now = new Date().getTime();//获取当前时间的毫秒数
+                console.log(now);
+                var shezhiTime =Date.parse(years.value+"/"+mons.value+"/"+days.value);//将设定的时间转为毫秒，但用parse精确吗
+                console.log(shezhiTime);
+                shezhiTime+= (hours.value*60*60+minis.value*60+seconds.value)/1000;//注意要除以1000
+                console.log(shezhiTime);
+               
+                var diff = Math.abs(now-shezhiTime);
+                var day = Math.floor(diff / (24 * 3600 * 1000));//计算出天数
+				var leave1 = diff % (24 * 3600 * 1000);    //计算天数后剩余的毫秒数
+				var hour = Math.floor(leave1 / (3600 * 1000));  //计算小时数
+				var leave2 = leave1 % (3600 * 1000);        //计算小时数后剩余的毫秒数
+				var minutes = Math.floor(leave2 / (60*1000)); //计算分钟数
+				var leave3 = leave2 % (60 * 1000);      //计算分钟数后剩余的毫秒数
+				var second=Math.round(leave3 / 1000); //计算秒
+                var str;
+                if(now-shezhiTime<0){
+                    str = " 还有";
+                }
+                else{
+                    str = " 已经过去";
+                }
+                var arr =["天","一","二","三","四","五","六"]
+                var pid = document.getElementById("result-wrapper");
+                var changeday =new Date(years.value+"-"+mons.value+"-"+days.value).getDay();
+                pid.innerHTML ="现在距离 "+years.value+"年"+mons.value+"月"+days.value+"日 "+"星期"+arr[ changeday]+" "+hours.value+":"+minis.value+":"+seconds.value+str+day+"天"+hour+"时"+minutes+"分"+second+"秒";
+              }
+             
+              setInterval("jisuan()",500);
+        </script>
 </body>
 </html>
