@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>GoSteps(看console)</h2>
+    <script>
+        function Go() {
+            console.log("Go");
+        }
+
+        function GoSteps(n) {
+            var a = Number(n);
+            
+            var b = Math.floor(a);
+            if(a == NaN || a < 0){
+                b=0;
+            }
+            if(n == ""){
+                b = 1;
+            }
+           
+            while(b>0){
+                Go();
+                b--;
+            }
+        }
+
+        GoSteps(10); // Go 10次
+        GoSteps(1); // Go 1次
+        GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+        GoSteps(0);  // 0次
+        GoSteps(-1);  // 0次
+        GoSteps(1.4);  // Go 1次
+        GoSteps(2);  // Go 1次
+        GoSteps(-1);  // 0次
+        GoSteps(true);  // Go 1次
+        GoSteps(false);  // 0次
+        GoSteps("Test");  // 0次
+        GoSteps(NaN);  // 0次
+        GoSteps(null);  // 0次
+        
+    </script>
+    <h2> YYYY 年 MM 月 DD 日 星期 D HH:mm:ss</h2>
+    <div id="time"></div>
+    <div id="time2"></div>
+    <script>
+        function getWeek(){
+            var date = new Date();
+            var arr =["天","一","二","三","四","五","六"]
+            return arr[date.getDay()];
+        }
+        function getWeek2(){
+            var date = new Date();
+            var arr =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+            return arr[date.getDay()];
+        }
+        function zero(num){
+            if(num<10){
+                num = "0" + num;
+            }
+            return num;
+        }
+        function getTime(){
+            var year,month,day,week,hour,min,second;
+            var date = new Date();
+            year = date.getFullYear();
+            month = date.getMonth()+1;
+            day = date.getDate();
+            week = getWeek();
+            hour = date.getHours();
+            min = date.getMinutes();
+            second = date.getSeconds();
+            var content= document.getElementById("time");
+            content.innerHTML = year +"年" + " "+month +"月"+ " "+day +"日"+ " "+"星期"+week+" "+zero(hour)+":"+zero(min)+":"+zero(second);
+        }
+        setInterval("getTime()",1000);
+        function pdtime(){
+            var date = new Date();
+            hour = date.getHours();
+            if(hour>=0 &&hour<=11){
+                return "AM";
+            }
+            if(hour>11 &&hour<=23){
+                return "PM";
+            }
+        }
+        function getTime2(){
+            var year,month,day,week,hour,min,second;
+            var date = new Date();
+            year = date.getFullYear();
+            month = date.getMonth()+1;
+            day = date.getDate();
+            week = getWeek2();
+            hour = date.getHours();
+            min = date.getMinutes();
+            second = date.getSeconds();
+            var content= document.getElementById("time2");
+            content.innerHTML = year +"-"+month +"-"+day +" "+week+" "+zero(hour)+":"+zero(min)+":"+zero(second)+""+ pdtime();
+        }
+        setInterval("getTime2()",1000);
+    </Script>
+    <h2>练习三</h2>
+    <select id="year-select">
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            ……
+            <option value="2032">2002</option>
+        </select>
+        
+        <select id="month-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            ……
+            <option value="12">12</option>
+        </select>
+        
+        <select id="day-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            ……
+            <option value="31">31</option>
+        </select>
+        
+        <select id="hour-select">
+            <option value="0">00</option>
+            <option value="1">01</option>        
+            ……
+            <option value="23">23</option>
+        </select>
+        
+        <select id="minite-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            ……
+            <option>59</option>
+        </select>
+        
+        <select id="second-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            ……
+            <option>59</option>
+        </select>
+        
+        <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+</body>
+</html>
