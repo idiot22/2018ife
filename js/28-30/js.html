@@ -1,0 +1,230 @@
+<!--(流程图)https://blog.csdn.net/qq1515312832/article/details/78857718-->
+<!--编码：显示到某一文本中时
+解码：输入框内容-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #email-sug-wrapper{
+            margin:0;padding:0; 
+        }
+        .liClass,.bgcolor{
+            list-style-type:none;
+            color:gray;
+            border:0.5px solid gray;
+            font-size:10px;
+            padding:5px;
+            width:155px;
+            cursor: pointer;
+        }
+        .liClass:hover{
+            background: #bde0e8;
+        }
+        .bgcolor{
+            background-color: #ffc5cf;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text"  onFocus=" ">
+        <ul id="email-sug-wrapper" class="email-sug">
+            
+        </ul>
+    </div>
+    <script>
+        // 邮箱后缀List参考
+        /*思路
+         *动：监听input
+         *静：获取input的值，ul添加多选框，为多选框添加内容，显示与隐藏
+        */
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var ulId = document.getElementById("email-sug-wrapper");
+        //input获取焦点
+        var index;
+        //input的事件监听
+        var inputId = document.getElementById("email-input");
+            inputId.focus();
+            
+         inputId.oninput = function() {
+             
+            //console.log("class",li[0]);
+            //ulId.childNodes[0].setAttribute("class","bgcolor");
+            bornLi();
+            pdUl();
+            if(ulId.hasChildNodes()){
+                index = 0;
+                var li=ulId.getElementsByTagName("li");
+                console.log("class",li[0]);
+                li[0].setAttribute("class",'bgcolor');
+           }
+        }
+
+        //获取input中的值
+        function getInput() {
+            var str = inputId.value;
+            str = str.trim();
+            return str;    
+        }
+         /*3.用正则表达式实现html转码*/
+         function strEncode(str) {
+            var s = "";
+            s = str.replace(/&/g,"&amp;");
+            s = s.replace(/</g,"&lt;");
+            s = s.replace(/>/g,"&gt;");
+            return s
+         }
+       /*4.用正则表达式实现html解码*/
+       function strDecode(str) {
+        var s = "";
+        s = str.replace(/&amp;/g,"&");
+        s = s.replace(/&lt;/g,"<");
+        s = s.replace(/&gt;/g,">");
+        return s
+  }
+ 
+        //生成提示框中的提示内容
+        function tishiStr() {
+            var str = getInput();
+            var arr = new Array();
+           var j=0;
+            
+           
+            if(str.indexOf("@")!=-1){
+                //console.log(str.indexOf("@"));
+                str1 = str.slice(0,str.indexOf("@"));//@之前的字符串
+                str2 = str.slice(str.indexOf("@")+1);//@之后的字符串
+                for(var i=0;i<postfixList.length-1;i++){
+                    var a= postfixList[i].indexOf("@");
+                    if(str2 == postfixList[i].slice(a+1,a+str2.length+1)){
+                       
+                        arr[j] = strEncode(str1)+"@"+postfixList[i];
+                        j++;
+                    }
+                }
+            }
+            else{
+            for(var i=0;i<postfixList.length-1;i++) {
+                
+                arr[i] = strEncode(str)+"@"+postfixList[i];
+            }}
+            return arr;
+        }
+        //将提示内容添加到email-sug-wrapper中
+        function bornLi() {
+            var arr = tishiStr();
+            //清空li(不用removeChild，用元素。remove())
+            var list = ulId.querySelectorAll("li");
+                 
+            for(var i = 0;i<list.length;i++){
+                   list[i].remove();
+                }
+           
+
+            for(var i = 0;i<arr.length;i++){
+                var li = document.createElement("li");
+                li.innerHTML = arr[i];
+                li.setAttribute("class","liClass");
+                
+                ulId.appendChild(li);
+            }
+        }
+
+        function pdUl() {
+            if(getInput() == "") {
+                nosee();
+            } else {
+                see();
+            }
+        }
+
+        function nosee() {
+            ulId.style.display = "none";
+        }
+
+        function see() {
+            ulId.style.display = "block";
+        }
+        //鼠标点击获取值
+        ulId.onmousedown = function(e){
+            var mubiao = e.target;
+           // mubiao.style.background="red";
+        }
+        //鼠标如果点击某个提示，则提示内容进入输入框，同时提示框消失
+        ulId.onclick = function(e){
+            var mubiao = e.target;
+            inputId.value = strDecode(mubiao.innerHTML);
+            nosee();
+            inputId.focus();
+        }
+        //键盘监听
+        document.onkeydown = function(e){
+            var keyNum = window.event ? e.keyCode : e.which;//获取按键的code
+            var chang = tishiStr().length;
+            var li=ulId.getElementsByTagName("li");
+            if(keyNum == 38){
+                if(index == 0){
+                    li[0].removeAttribute("class","bgcolor");
+                    li[0].setAttribute("class","liClass");
+                    index = chang-1;
+                    li[index].setAttribute("class","bgcolor");
+                }
+                else{
+                    li[index].removeAttribute("class","bgcolor");
+                    li[index].setAttribute("class","liClass");
+                    index = index-1;
+                    li[index].setAttribute("class","bgcolor");
+                }
+            }
+            if(keyNum == 40){
+                if(index == chang-1){
+                    li[chang-1].removeAttribute("class","bgcolor");
+                    li[chang-1].setAttribute("class","liClass");
+                    index = 0;
+                    li[index].setAttribute("class","bgcolor");
+                }
+                else{
+                    li[index].removeAttribute("class","bgcolor");
+                    li[index].setAttribute("class","liClass");
+                    index = index+1;
+                    li[index].setAttribute("class","bgcolor");
+                }
+            }
+            if(keyNum == 13){
+                inputId.value = strDecode( li[index].innerHTML);
+                nosee();
+            }
+            if(keyNum == 27) {
+					//e.preventDefault();
+					inputId.select(); // 按下Esc键(27) 全选输入框内容
+				}
+
+
+        } 
+        // 监听特殊3个键的键盘事件，这个事件可能就是inputDom的输入监听，也有可能是另外一个，请自己测试后判断
+// 监听特殊3个键的键盘事件 从
+//         } else {
+//             将最后一个Li设为选中
+//         }
+//     }
+//     if 按的是下键 {
+//         if 找到的Li不是最后一个 {
+//             将它的下一个Li设为选中
+//         } else {
+//             将第一个Li设为选中
+//         }
+//     }
+
+//     if 按的是回车 {
+//         将找到的Li的HTML内容解码后填到input中
+//         隐藏提示框
+//     }
+// }
+    </script>
+</body>
+</html>
