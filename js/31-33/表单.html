@@ -1,0 +1,47 @@
+<!--
+    *思路：1.选择框之间的相互影响
+           2.按不同情况读取数据
+           3.渲染表格
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 10px;
+            border: 1px solid #000;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="regionWapper">
+        <laber>地区：</laber>
+        <input type="checkbox" value="华东">华东
+        <input type="checkbox" value="华北">华北
+        <input type="checkbox" value="华南">华南
+        <input type="checkbox" value="1">全选
+    </div>
+    <div id="productWapper">
+        <laber>商品：</laber>
+        <input type="checkbox" value="手机">手机
+        <input type="checkbox" value="笔记本">笔记本
+        <input type="checkbox" value="智能音箱">智能音箱
+        <input type="checkbox" value="1">全选
+    </div>
+    <div id="tableWapper">
+    </div>
+    <script src="ife31data.js"></script>
+    <script src="check.js"></script>
+    <script src="table.js"></script>
+</body>
+</html>
